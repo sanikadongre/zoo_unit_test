@@ -2,12 +2,11 @@ import sys
 from abc import ABC, abstractmethod
 import random
 import unittest
-from mock import patch
 from unittest.mock import MagicMock
 
 
 class Animal():
-    def _init_(self, name=" "):
+    def __init__(self, name=" "):
 
         self.name = name
 
@@ -66,7 +65,7 @@ class Pachyderm(Animal):
 
 class Cat(Feline):
 
-    def _init_(self,name):
+    def __init__(self,name):
         self.name = name;
 
     def makeNoise(self):
@@ -89,18 +88,17 @@ class Cat(Feline):
 class TestCat(unittest.TestCase):
     def test_makeNoise(self):
         cat = Cat("Cheshire")
-        #self.assertTrue(mock_makeNoise.expr=)
-        cat.makeNoise = MagicMock()
-        cat.makeNoise.assert_called_with(1,2,3)
-        #self.assertTrue(mock_makeNoise.call_args[0][0] == "Cheshire Cat makes noise Meow." or mock_makeNoise.call_args[0][0] == "Cheshire Cat makes noise Meowwww and Meowwww.")
-
+        cat.makeNoise = MagicMock(name="makeNoise")
+        self.assertFalse(cat.makeNoise.called)
     def test_roam(self):
         cat = Cat("Cheshire")
-        cat.roam = MagicMock()
-        cat.roam.assert_called_with(1,2,3)
+        cat.roam = MagicMock(name="roam")
+        self.assertFalse(cat.roam.called)
+        #cat.roam.assert_called_once()
+        #cat.roam.assert_called_with(1,2,3)
 
 class Elephant(Pachyderm):
-    def _init_(self,name):
+    def __init__(self,name):
         self.name = name;
 
     def makeNoise(self):
@@ -112,13 +110,18 @@ class Elephant(Pachyderm):
         print(self.name + " Elephant exercises by moving and bathing in the muddy water.")
 
 class TestElephant(unittest.TestCase):
-    elephant = Elephant("Elle")
-
-
+    def test_makeNoise(self):
+        elephant = Elephant("Elle")
+        elephant.makeNoise = MagicMock(name="makeNoise")
+        self.assertFalse(elephant.makeNoise.called)
+    def test_roam(self):
+        elephant = Elephant("Elle")
+        elephant.roam = MagicMock(name="roam")
+        self.assertFalse(elephant.roam.called)
 
 class Hippo(Pachyderm):
 
-    def _init_(self,name):
+    def __init__(self,name):
         self.name = name
 
     def makeNoise(self):
@@ -127,9 +130,19 @@ class Hippo(Pachyderm):
     def roam(self):
         print(self.name + " Hippo exercises by jumping up and down in the water.")
 
+class TestHippo(unittest.TestCase):
+    def test_makeNoise(self):
+        hippo = Hippo("Hippie")
+        hippo.makeNoise = MagicMock(name="makeNoise")
+        self.assertFalse(hippo.makeNoise.called)
+    def test_roam(self):
+        hippo = Hippo("Hippie")
+        hippo.roam = MagicMock(name="roam")
+        self.assertFalse(hippo.roam.called)
+
 class Lion(Feline):
 
-    def _init_(self,name):
+    def __init__(self,name):
         self.name = name
 
     def makeNoise(self):
@@ -139,9 +152,19 @@ class Lion(Feline):
     def roam(self):
         print(self.name + " Lion exercises by running quick and putting claws in trees.")
 
+class TestLion(unittest.TestCase):
+    def test_makeNoise(self):
+        leo = Lion("Leo")
+        leo.makeNoise = MagicMock(name="makeNoise")
+        self.assertFalse(leo.makeNoise.called)
+    def test_roam(self):
+        leo = Lion("Leo")
+        leo.roam = MagicMock(name="roam")
+        self.assertFalse(leo.roam.called)
+
 class Rhino(Pachyderm):
 
-    def _init_(self,name):
+    def __init__(self,name):
         self.name = name
 
     def makeNoise(self):
@@ -151,10 +174,19 @@ class Rhino(Pachyderm):
     def roam(self):
         print(self.name + " Rhino exercises by jumping up and down in the grass.")
 
+class TestRhino(unittest.TestCase):
+    def test_makeNoise(self):
+        rhino = Rhino("Rhoo")
+        rhino.makeNoise = MagicMock(name="makeNoise")
+        self.assertFalse(rhino.makeNoise.called)
+    def test_roam(self):
+        rhino = Rhino("Rhoo")
+        rhino.roam = MagicMock(name="roam")
+        self.assertFalse(rhino.roam.called)
 
 class Tiger(Feline):
 
-    def _init_(self,name):
+    def __init__(self,name):
         self.name = name
 
     def makeNoise(self):
@@ -164,10 +196,19 @@ class Tiger(Feline):
     def roam(self):
         print(self.name + "Tiger exercises by running quick and putting claws in trees.")
 
+class TestTiger(unittest.TestCase):
+    def test_makeNoise(self):
+        tiger = Tiger("Tigran")
+        tiger.makeNoise = MagicMock(name="makeNoise")
+        self.assertFalse(tiger.makeNoise.called)
+    def test_roam(self):
+        tiger = Tiger("Tigran")
+        tiger.roam = MagicMock(name="roam")
+        self.assertFalse(tiger.roam.called)
 
 class Wolf(Canine):
 
-    def _init_(self,name):
+    def __init__(self,name):
         self.name = name
 
     def makeNoise(self):
@@ -177,10 +218,19 @@ class Wolf(Canine):
     def roam(self):
         print(self.name + "Wolf exercises by stretching and licking itself.")
 
+class TestWolf(unittest.TestCase):
+    def test_makeNoise(self):
+        wolf = Wolf("Wolvie")
+        wolf.makeNoise = MagicMock(name="makeNoise")
+        self.assertFalse(wolf.makeNoise.called)
+    def test_roam(self):
+        wolf = Wolf("Wolvie")
+        wolf.roam = MagicMock(name="roam")
+        self.assertFalse(wolf.roam.called)
 
 class Dog(Canine):
 
-    def _init_(self,name):
+    def __init__(self,name):
         self.name = name
 
     def makeNoise(self):
@@ -190,12 +240,21 @@ class Dog(Canine):
     def roam(self):
         print(self.name + "Dog exercises by stretching and sprinting.")
 
+class TestDog(unittest.TestCase):
+    def test_makeNoise(self):
+        dog = Dog("Doggie")
+        dog.makeNoise = MagicMock(name="makeNoise")
+        self.assertFalse(dog.makeNoise.called)
+    def test_roam(self):
+        dog = Dog("Doggie")
+        dog.roam = MagicMock(name="roam")
+        self.assertFalse(dog.roam.called)
 
 class ZooKeeper:
 
 
 
-    def _init_(self):
+    def __init__(self):
         sys.stdout = open('dayatthezoo.txt','wt')
         print("----- Day At the Zoo: Output -----")
         print("Zoo Opened.")
@@ -270,6 +329,6 @@ class ZooKeeper:
 
 
 
-if _name_ == '_main_':
+if __name__ == '__main__':
     zk=ZooKeeper()
     unittest.main()
