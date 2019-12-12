@@ -155,7 +155,7 @@ class TestDog(unittest.TestCase):
 		ani = getDog.roam()
 		self.assertEqual(ani,"name Dog exercises by stretching and sprinting.\n")
 
-def test_zookeeper_init(capsys):
+def test_zookeeper_init(unittest.TestCase):
 	ani = ZooKeeper()
 	self.assertEqual(ani,"----- Day At the Zoo: Output ----- Zoo Opened.")
 if __name__ == '__main__':
