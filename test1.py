@@ -180,3 +180,6 @@ def test_zookeeper_init(capsys):
 	ani = ZooKeeper()
 	self.assertEqual(ani,"""----- Day At the Zoo: Output -----
 Zoo Opened.)
+
+if __name__ == '__main__':
+    unittest.main()
