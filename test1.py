@@ -1,5 +1,5 @@
 import sys
-import pytest
+import unittest
 import random
 
 
@@ -18,15 +18,14 @@ from zoo import Wolf
 from zoo import Dog
 from zoo import ZooKeeper
 
-@pytest.fixture()
+@classmethod
 def getAnimal():
 	animal = Animal("name")
 	return animal
 
-def test_animal_wakeUp(getAnimal, capsys):
+def test_animal_wakeUp(getAnimal, unittest.TestCase):
 	getAnimal.wakeUp()
-	out, err = capsys.readouterr()
-	assert out == "name The animal wakes up.\n"
+	self.assertEqual("name The animal wakes up.\n")
 
 def test_animal_sleep(getAnimal, capsys):
 	getAnimal.sleep()
